@@ -52,9 +52,12 @@ CREATE TABLE livro (
     id_livro INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(150) NOT NULL,
     ano_publicacao YEAR,
-    FOREING KEY (id_editora) REFERENCES editora (id_editora),
-    FOREING KEY (id_autor) REFERENCES autor (id_autor),
-      FOREING KEY (id_assunto) REFERENCES assunto (id_assunto)
+    editora INT,
+    autor INT,
+    assunto INT
+    FOREIGN KEY (editora) REFERENCES editora (id_editora),
+    FOREIGN KEY (autor) REFERENCES autor (id_autor),
+    FOREIGN KEY (assunto) REFERENCES assunto (id_assunto)
     );
 ```
 
@@ -77,3 +80,43 @@ Após a criaçã da tabela, podemos adicionar novos campos. Vamos adicionar uma 
 ALTER TABLE autor
 ADD COLUMN email VARCHAR(100);
 ```
+
+## Passo 3: remover uma tabela usando 'DROP'
+Se precisar remover uma tabela usamos o comando 'DROP'.
+Neste exemplo vamos remover a tabela 'extra'
+
+```SQL
+DROP TABLE extra;
+```
+
+## Passo 4: Inserindo dados usando 'INSERT'
+Agora que as tabelas já estão prontas, vamos inserir dados nelas.
+
+#### 4.1 Inserindo dados na tabela 'editora'
+```SQL
+INSERT INTO editora(nome_editora, pais)
+VALUES
+('Editora Panini', 'Itália'),
+('Editora JBC', 'Japão'),
+('Editora Darkside Books', 'Brasil');
+```
+
+#### 4.2 Inserindo dados na tabela 'autor'
+```SQL
+INSERT INTO autor (nome_autor, data_nascimento, email)
+VALUES
+('Gege Akutami','1992-02-26','akutamigege@email.com'),
+('Hajime Isayama','1986-08-29','isayama@email.com'),
+('Suichi Aso','1985-12-26','asosuichi@gmail.com');
+```
+#### 4.3 Inserindo dados na tabela 'assunto'
+```SQL
+INSERT INTO assunto (descricao)
+VALUES
+('Ficção'),
+('Mistério'),
+('Terror'),
+('Suspense');
+```
+
+
