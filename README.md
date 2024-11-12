@@ -119,4 +119,51 @@ VALUES
 ('Suspense');
 ```
 
+## Passo 5: Atualizando os dados usando 'UPDATE'
+Podemos atualizar os dados com o comando UPDATE.
+Vamos corrigir a data de publicação do livro 'Saiki Kusuo no Psi-Nan'
 
+```SQL
+UPDATE livro
+SET ano_publicacao = 2012
+WHERE titulo = 'Saiki Kusuo no Psi-Nan';
+```
+
+## Passo 6: Excluindo os dados usando 'DELETE'
+Para remover os registros de uma tabela usamos o comando 'DELETE'.
+Vamos excluir o livro 'Haikyuu'.
+
+```SQL
+DELETE FROM livro
+WHERE id_livro = 2;
+```
+
+## Passo 7: Consultando os dados usando 'SELECT'
+É possível selecionar os dados para visualizar da forma como quiser.
+Para isso usamos o comando 'SELECT'.
+
+#### 7.1 selecionar todos os livros com suas editoras e autores
+Vamos usar dados das tabelas 'livros', 'editora', 'autor' e 'assunto' usando o comando 'JOIN'
+
+```SQL 
+SELECT livro.titulo AS nome,
+        editora.nome_editora AS editora,
+        autor.nome_autor AS autor,
+        assunto.descricao AS genero
+        livro.ano_publicacao AS lancamento
+
+FROM livro
+JOIN editora ON livro.editora = editora.id_editora
+JOIN autor ON livro.autor = autor.id_autor
+JOIN assunto ON livro.assunto = assunto.id_assunto
+```
+#### Passo 7.2: selecionar todos os livros com o mesmo assunto
+Para selecionar todos os livros que pertencem ao mesmo assunto, podemos fazer uma consulta utilizando o comando 'SELECT' com uma condição 'WHERE' especificando o que deseja visualizar.
+
+```SQL
+SELECT  livro.titulo AS titulo,
+        assunto.descricao_assunto AS tema
+FROM livro
+JOIN assunto ON livro.assunto = assunto.id_assunto
+WHERE assunto.descricao_assunto = 'Romance';
+```
